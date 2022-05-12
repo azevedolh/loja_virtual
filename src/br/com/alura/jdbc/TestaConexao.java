@@ -1,4 +1,4 @@
-package loja_virtual;
+package br.com.alura.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package loja_virtual;
+package br.com.alura.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,10 +34,6 @@ public class TestaInsercao {
 	}
 
 	private static void adicionarProduto(String nome, String descricao, PreparedStatement stm) throws SQLException {
-		if (nome.equals("Cadeira")) {
-			throw new RuntimeException("erro na inserção");
-		}
-
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
 		stm.execute();

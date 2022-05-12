@@ -1,32 +1,27 @@
-package loja_virtual;
+package br.com.alura.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TestaListagem { 
+public class TestaRemocao {
 
 	public static void main(String[] args) throws SQLException {
 		Connection connection = new ConnectionFactory().createConnection();
 		
-		String sqlQuery = "SELECT * FROM PRODUTO";
+		String sqlQuery = "DELETE FROM PRODUTO WHERE ID > ?";
+		int id = 2;
 		
 //		Statement stm = connection.createStatement();
-		
 		PreparedStatement stm = connection.prepareStatement(sqlQuery);
+		stm.setInt(1, id);
 		stm.execute();
 		System.out.println("<<LOG>> Query executada: " + sqlQuery);
-		ResultSet resultado = stm.getResultSet();
 		
-		while (resultado.next()) {
-			System.out.println(resultado.getInt("id"));
-			System.out.println(resultado.getString("nome"));
-			System.out.println(resultado.getString("descricao"));
-		}
+		System.out.println("Quantidade de linhas deletadas do banco: " + stm.getUpdateCount());
 		
 		connection.close();
 		System.out.println("<<LOG>> Conexão Encerrada");
-
 	}
+
 }
